@@ -1,0 +1,10 @@
+<?php session_start();
+require("../db_connect.php");
+$userid = $_SESSION["userid"];
+$db->exec("delete from users where userid=$userid");
+$db->exec("delete from review where userid=$userid");
+$db->exec("delete from cart where userid=$userid");
+unset($_SESSION["userid"]);
+unset($_SESSION["username"]);
+unset($_SESSION["admin"]);
+header("Location:../main.php");
